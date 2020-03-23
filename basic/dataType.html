@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dataType</title>
+</head>
+
+<body>
+    <script>
+        var length = "Hello"; // Var 변수 선언 + 변수 이름(데이터 타입에 따라 바뀜)
+        console.log(typeof length);
+        //변수
+        var friend = {
+            //필드
+            firstName: "gildong",
+            lastName: "Hong",
+            age: 16,
+            getFullName: function () { return this.firstName + ":" + this.lastName } //메소드
+        }
+        for (field in friend) { //get field.
+            console.log(field + "," + friend[field]);
+        }
+
+        console.log(friend.firstName + "," + friend.lastName);
+        console.log(friend["firstName"] + "," + friend["lastName"]);
+        console.log(friend.getFullName());
+
+        function getName() {
+            return "YoonJaeEon";
+        }
+        function sum(a, b) {
+            return a + b;
+        }
+        console.log(getName());
+        console.log("결과는 " + sum(10, 20));
+
+        var numAry = [1, 2, 3, 4, 5]; //배열 [1,2,"String",4,5](숫자도 올 수 있고, 문자도 올 수 있다.)
+        var strAry = ["Hello", "nice", "good"];
+        for (var i = 0; i < strAry.length; i++) {
+            console.log(strAry[i]);
+        }
+        for (var i = 0; i < numAry.length; i++) {
+            console.log(numAry[i]);
+        }
+        var friend1 = {
+            //필드
+            firstName: "gildong",
+            lastName: "Hong",
+            age: 16
+
+
+        }
+        var friend2 = {
+            //필드
+            firstName: "seongwoo",
+            lastName: "Hong",
+            age: 26
+
+        }
+        var friend3 = {
+            //필드
+            firstName: "junwon",
+            lastName: "Ha",
+            age: 36
+
+
+        }
+        var friends = [friend1, friend2, friend3];
+        for (obj of friends) {
+            console.log(obj);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrayIteration.html</title>
+</head>
+
+<body>
+    <div id="show"></div>
+    <script>
+        var points = [89, 77, 99, 55, 100];
+        var sum = 0;
+        for (var i = 0; i < points.length; i++) {
+            if (i % 2 == 0)
+                sum += points[i];
+        }
+        sum = 0;
+        points.forEach(callBackFunc);
+        function callBackFunc(a, b, c) {
+            if (b % 2 == 0)
+                sum += a;
+            // console.log(a, b, c);
+        }
+        console.log("result: " + sum);
+        var members = [
+            {name:"junwon",score:80},
+            {name:"seongwoo2",score:70},
+            {name:"jaeeon",score:90}
+        ]
+        var myTag = "<table border=1>";
+        myTag +="<tr><th>Name</th><th>Score</th></tr>";
+        members.forEach(function(obj) {
+            myTag += "<tr><td>"+obj.name+"</td><td>"+obj.score+"</td></tr>";
+        });
+        myTag += "</table>";
+        document.getElementById("show").innerHTML = myTag;
+    </script>
+</body>
+
+</html>
