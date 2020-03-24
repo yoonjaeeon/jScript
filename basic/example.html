@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn" onclick="addrList()">Click</button>
+    <table id="tbl" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Age</th>
+        </tr>
+    </table>
+    <script>
+        var addrList = [
+            { name: "junwon", phone: "1234-1234", age: 16 },
+            { name: "seongwoo", phone: "1234-5678", age: 26 },
+            { name: "jaeeon", phone: "1235-7890", age: 36 },
+            { name: "hong", phone: "1236-4567", age: 46 }
+        ]
+        var $titles = ["name", "phone", "age"]; // 순서 고정 (Index 값)
+        var btn = document.getElementById("btn"); // 요소나 태그를 가져옴
+        btn.onclick = function () {
+            var tbl = document.getElementById("tbl");
+            var $text, $td, $tr;
+            addrList.forEach(function (o) { // o->i->a
+                $tr = document.createElement("tr"); // <tr></tr>
+                for (field of $titles) {
+                    $text = document.createTextNode(o[field]);
+                    $td = document.createElement("td"); // <td></td>
+                    $td.appendChild($text); // <td>junwon</td>
+                    $tr.appendChild($td); // <tr><td>junwon</td></tr>
+                }
+                tbl.appendChild($tr); // <table><tr><td>junwon</td></tr></table>
+            })
+
+        }
+    </script>
+</body>
+
+</html>

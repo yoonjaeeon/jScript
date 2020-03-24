@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- input:text#firstName -->
+    <input type="text" id="firstName" value="gildong">
+    <input type="text" name="lastName" id="lastName" value="Hong">
+    <input type="text" name="age" id="age" value="16">
+    <!-- ul>li*3 -->
+    <!-- tr>td*3 -->
+    <button id="btn" onclick="translatebtn()">Click</button>
+    <table id="tbl" border="1">
+        <tbody>
+            <tr>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Age</td>
+            </tr>
+            <tr>
+                <td>junwon</td>
+                <td>Ha</td>
+                <td>26</td>
+            </tr>
+            <tr>
+                <td>gildong</td>
+                <td>Hong</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>jaeeon</td>
+                <td>yoon</td>
+                <td style="background-color: aqua;">26</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+               var tds = document.querySelectorAll("#tbl tr");
+        console.log(tds);
+        tds.forEach(function (a, b) {
+            a.onmouseover = function () {
+                this.style.backgroundColor = "cyan";
+            }
+            a.onmouseout = function() {
+                this.style.backgroundColor = "";
+            }
+            a.onclick = function() {
+                alert(this.childNodes[1].childNodes[0].nodeValue);
+            }
+        })
+ 
+    </script>
+</body>
+
+</html>

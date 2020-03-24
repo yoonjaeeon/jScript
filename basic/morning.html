@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- input:text#firstName -->
+    <input type="text" id="firstName" value="gildong">
+    <input type="text" name="lastName" id="lastName" value="Hong">
+    <input type="text" name="age" id="age" value="16">
+    <!-- ul>li*3 -->
+    <!-- tr>td*3 -->
+    <button id="btn" onclick="addTr()">Click</button>
+    <table id="tbl" border=1>
+        <tr>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Age</td>
+        </tr>
+        <tr>
+            <td>junwon</td>
+            <td>Ha</td>
+            <td>26</td>
+        </tr>
+    </table>
+    <script>
+        var tbl = document.getElementById("tbl"); //요소나 태그를 가져옴
+
+        function addTr() {
+        var fName = document.getElementById('firstName').value;
+        var lName = document.getElementById('lastName').value;
+        var age = document.getElementById('age').value;
+        console.log(fName);
+        var $tr, $td, $text;
+        $tr = document.createElement("tr"); //요소 태그를 만들때
+
+        $text = document.createTextNode(fName);
+        $td = document.createElement("td");
+        $td.appendChild($text);
+        $tr.appendChild($td);
+
+        $text = document.createTextNode(lName);
+        $td = document.createElement("td");
+        $td.appendChild($text);
+        $tr.appendChild($td);
+
+        $text = document.createTextNode(age);
+        $td = document.createElement("td");
+        $td.appendChild($text);
+        $tr.appendChild($td);
+
+        tbl.appendChild($tr);
+
+        document.getElementById('firstName').value = "";
+        document.getElementById('lastName').value = "";
+        document.getElementById('age').value = "";
+        // console.log($tr);
+        }
+    </script>
+
+</body>
+
+</html>
