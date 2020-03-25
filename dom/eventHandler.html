@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventHandler.html</title>
+</head>
+
+<body>
+    Eid:<input type="text" id="empid"><br>
+    Name:<input type="text" id="name"><br>
+    Phone:<input type="text" id="phone"><br>
+    <button id="btn">Add Info</button>
+    <table id="tbl">
+        <tr>
+            <th>empId</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Delete</th>
+        </tr>
+    </table>
+    <script>
+        var datas = [
+            { empId: 101, name: "scott", phone: "1234" },
+            { empId: 102, name: "seongwoo", phone: "3344" },
+            { empId: 103, name: "junwon", phone: "4444" },
+            { empId: 104, name: "jaeeon", phone: "3333" },
+            { empId: 105, name: "kyurim", phone: "6666" }
+        ]
+        var tbl = document.getElementById("tbl");
+        var $tr, $td, $text;
+        var $title = ["empId", "name", "phone"];
+        datas.forEach(function (obj, ind) {
+            $tr = document.createElement("tr");
+            $tr.setAttribute("id", obj.empId);
+            // $tr.addEventListener("click", clickFnc);
+            $tr.addEventListener("mouseover", mOverFnc);
+            $tr.addEventListener("mouseout", mOutFnc);
+            for (field of $title) {
+                $text = document.createTextNode(obj[field]);
+                $td = document.createElement("td");
+                $td.appendChild($text); // <td>101</td>
+                $tr.appendChild($td); // <tr><td>101</td></tr>
+            }
+            // button 태그 생성. <td><button>Del</button></td>
+            $text = document.createTextNode("Del");
+            var $btn = document.createElement("button");
+            $btn.onclick = delFunc;
+            $btn.appendChild($text);
+            $td = document.createElement("td");
+            $td.appendChild($btn);
+            $tr.appendChild($td);
+
+            tbl.appendChild($tr);
+        });
+
+        function delFunc() {
+            console.log(this.parentNode.parentNode)
+            this.parentNode.parentNode.remove();
+            // id=101 값을 db에서 삭제 처리.
+        }
+
+        // function clickFnc() {
+        //     console.log(this.childNodes[0].childNodes[0].nodeValue)
+        //     var artMsg = "id: " + this.childNodes[0].childNodes[0].nodeValue
+        //         + "\nname: " + this.childNodes[1].childNodes[0].nodeValue
+        //         + "\nphone: " + this.childNodes[2].childNodes[0].nodeValue;
+        //     alert(artMsg);
+        // }
+        function mOverFnc() {
+            this.style.background = "yellow";
+
+        }
+        function mOutFnc() {
+            this.style.background = "";
+        }
+        // function addTr() {
+        // var empid = document.getElementById('empid').value;
+        // var name = document.getElementById('name').value;
+        // var phone = document.getElementById('phone').value;
+        // var $tr, $td, $text;
+        // $tr = document.createElement("tr"); //요소 태그를 만들때
+
+        // $text = document.createTextNode(empid);
+        // $td = document.createElement("td");
+        // $td.appendChild($text);
+        // $tr.appendChild($td);
+
+        // $text = document.createTextNode(name);
+        // $td = document.createElement("td");
+        // $td.appendChild($text);
+        // $tr.appendChild($td);
+
+        // $text = document.createTextNode(phone);
+        // $td = document.createElement("td");
+        // $td.appendChild($text);
+        // $tr.appendChild($td);
+
+        // $text = document.createTextNode("Del");
+        // var $btn = document.createElement("button");
+        // $btn.onclick = delFunc;
+        // $btn.appendChild($text);
+        // $td = document.createElement("td");
+        // $td.appendChild($btn);
+        // $tr.appendChild($td);
+
+        // tbl.appendChild($tr);
+
+        // add 버튼을 누르면 처리하는 부분.
+        var addBtn = document.getElementById("btn");
+        addBtn.addEventListener("click", addInfoFnc);
+
+        function addInfoFnc() {
+            $tr = document.createElement("tr");
+            $tr.setAttribute("id", document.getElementById("empid"));
+            // $tr.addEventListener("click", clickFnc);
+            $tr.addEventListener("mouseover", mOverFnc);
+            $tr.addEventListener("mouseout", mOutFnc);
+            var inputs = document.querySelectorAll("input");
+            inputs.forEach(function (a) {
+
+                $text = document.createTextNode(a.value);
+                $td = document.createElement("td");
+                $td.appendChild($text); // <td>101</td>
+                $tr.appendChild($td); // <tr><td>101</td></tr>
+            });
+            $text = document.createTextNode("Del");
+            var $btn = document.createElement("button");
+            $btn.onclick = delFunc;
+            $btn.appendChild($text);
+            $td = document.createElement("td");
+            $td.appendChild($btn);
+            $tr.appendChild($td);
+
+            tbl.appendChild($tr);
+        }
+        // document.getElementById('empid').value = "";
+        // document.getElementById('name').value = "";
+        // document.getElementById('phone').value = "";
+        // console.log($tr);
+        // }
+    </script>
+
+</body>
+
+</html>

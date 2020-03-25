@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            float: left;
+            border: 2px blue solid;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <button id="btn">Click</button>
+    <script>
+        var btns = document.getElementById("btn");
+        btns.onclick = function () {
+            alert(this.innerHTML); //innerHTML 내부HTML 출력
+        }
+        var $divs = document.getElementsByTagName("div");
+        console.log($divs);
+        // $divs= document.querySelectorAll("div");
+        // $divs.forEach(function(a) { //forEach사용할려면 배열 상태를 만들어야해서 querySelectorAll 사용
+        //     a.setAttribute("style","background-color : yellow");
+        //});
+        for (var i = 0; i < $divs.length; i++) {
+            $divs[i].setAttribute("style", "background-color : yellow"); //setAttribute 속성부여
+            $divs[i].onmouseover = function () {
+                this.setAttribute("style", "color:red");
+            }
+            $divs[i].onmouseout = function () {
+                this.setAttribute("style", "background-color : yellow")
+            }
+        }
+        for (var i = 0; i < $divs.length; i++) {
+            $divs[i].onclick = function () {
+                alert(this.innerHTML);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

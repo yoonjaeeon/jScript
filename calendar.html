@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="year">
+    <input type="text" id="month">
+    <button id="btn">CreateCalendar</button>
+    <script>
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+            var yr = document.getElementById('year').value;
+            var mth = document.getElementById('month').value;
+            createCal(yr, mth);
+        }
+        function createCal(y, m) {
+            //화면 clear
+            var tbl = document.getElementsByTagName("table");
+            if (tbl && tbl.length > 0) {
+                tbl[0].remove();
+            }
+            // 
+            var year = y;
+            var month = m;
+            var dday = new Date(year, month, 0); // 3월(2), 4월(3)
+            var tday = new Date(year, month - 1, 1);
+            // console.log(month + "월의 마지막날: " + dday.getDate());
+
+            var days = ["일", "월", "화", "수", "목", "금", "토"];
+            var tableTag = document.createElement("table");
+            tableTag.setAttribute("border", 1);
+            var trTag = document.createElement("tr");
+            days.forEach(function (a, b) {
+                var tdTag = document.createElement("td");
+                if (b == 0) {
+                    tdTag.style.background = "red";
+                    tdTag.style.color = "white";
+                }
+                if (b == 6) {
+                    tdTag.style.background = "blue";
+                    tdTag.style.color = "white";
+                }
+                var textTag = document.createTextNode(a);
+                tdTag.appendChild(textTag);
+                trTag.appendChild(tdTag);
+            });
+            tableTag.appendChild(trTag);
+            // ---> 31까지 반복되도록 (7일단위로).
+            trTag = document.createElement("tr");
+            var nullDay = tday.getDay(); // 일(0), 월(1), 화(2), 수(3)..토(6)
+            for (var i = 0; i < nullDay; i++) {
+                var tdTag = document.createElement("td");
+                var textTag = document.createTextNode("");
+                tdTag.appendChild(textTag);
+                trTag.appendChild(tdTag);
+            }
+            var totalDay = dday.getDate();
+            for (var i = 1; i <= totalDay; i++) {
+                var tdTag = document.createElement("td");
+                var textTag = document.createTextNode(i);
+                tdTag.appendChild(textTag);
+                trTag.appendChild(tdTag);
+                if ((i + nullDay) % 7 == 1) {
+                    tdTag.style.background = "red";
+                    tdTag.style.color = "white";
+                }
+                if ((i + nullDay) % 7 == 0) {
+                    tdTag.style.background = "blue";
+                    tdTag.style.color = "white";
+                }
+                if ((i + nullDay) % 7 == 0) {
+                    tableTag.appendChild(trTag);
+                    trTag = document.createElement("tr");
+                }
+            }
+            tableTag.appendChild(trTag);
+            //
+            document.body.appendChild(tableTag);
+        }
+    </script>
+</body>
+
+</html>
